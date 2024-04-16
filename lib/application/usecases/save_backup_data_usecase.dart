@@ -7,13 +7,13 @@ class SaveBackupDataUsecase {
 
   Future<void> call(
     Map<String, dynamic> data, {
-    required String path,
+    required String fileName,
   }) async {
     var status = await Permission.storage.status;
     if (!status.isGranted) {
       await Permission.storage.request();
     }
 
-    return _backupRepository.persistData(data, fileName: path);
+    return _backupRepository.persistData(data, fileName: fileName);
   }
 }
